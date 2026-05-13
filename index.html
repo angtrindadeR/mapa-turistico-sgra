@@ -62,9 +62,12 @@
         .section { display: none; }
         .section.active { display: block; }
 
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--azul-gov); margin-bottom: 20px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: var(--azul-gov); margin-top: 40px; margin-bottom: 20px; border-left: 5px solid var(--ouro); padding-left: 15px; }
+        h3 { color: var(--azul-gov); margin-top: 30px; }
 
-        .grid-atracoes {
+        .boas-vindas { font-size: 1.1rem; line-height: 1.8; text-align: center; font-style: italic; color: #444; margin-bottom: 40px; }
+
+        .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
@@ -76,17 +79,20 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border-bottom: 4px solid transparent;
+            transition: 0.3s;
         }
+        .card:hover { transform: translateY(-5px); }
         .card-img { width: 100%; height: 180px; object-fit: cover; }
         .card-body { padding: 15px; }
         
         .tag { font-size: 0.7rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        .tag-historia { background: #e3f2fd; color: var(--azul-gov); }
+        .tag-natureza { background: #e8f5e9; color: var(--verde-natureza); }
         .tag-religioso { background: #fff3e0; color: var(--ouro); }
-        .tag-rural { background: #e8f5e9; color: var(--verde-natureza); }
 
         .historia-texto { line-height: 1.8; text-align: justify; white-space: pre-line; }
 
-        #map { height: 400px; width: 100%; border-radius: 15px; margin-top: 20px; border: 2px solid white; }
+        #map { height: 450px; width: 100%; border-radius: 15px; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         .chatbot-btn {
             position: fixed; bottom: 30px; right: 30px;
@@ -116,50 +122,128 @@
 
 <div class="main-content">
     
-    <!-- ABA INÍCIO (Mapa e Agenda) -->
+    <!-- ABA INÍCIO (Convite, Mapa e Agenda) -->
     <div id="home" class="section active">
-        <h2>Mapa Turístico</h2>
+        <div class="boas-vindas">
+            "Entre as montanhas de Minas e as margens de rios que guardam memórias do século XVIII, surge uma cidade onde a tradição e a modernidade caminham juntas. Fundada por desbravadores em busca de tesouros, São Gonçalo do Rio Abaixo preserva em suas igrejas coloniais e no seu povo acolhedor a verdadeira essência mineira. <br><br>
+            Aqui, você caminha pela história do Ciclo do Ouro, respira o ar puro das nossas serras e vivencia a força de um destino que se reinventa a cada dia. Explore o mapa abaixo, descubra nossos caminhos e venha escrever o seu próximo capítulo no coração de Minas Gerais."
+        </div>
+
+        <h2>Explore o Mapa</h2>
         <div id="map"></div>
         
-        <h2 style="margin-top: 50px;">Agenda Cultural 2026</h2>
-        <div class="grid-atracoes">
-            <div class="card" style="border-bottom-color: var(--ouro);">
+        <h2>Agenda Cultural 2026</h2>
+        <div class="grid-cards">
+            <div class="card" style="border-bottom-color: var(--azul-gov);">
                 <div class="card-body">
-                    <span class="tag tag-religioso">Maio</span>
-                    <h3>Jubileu do Senhor Bom Jesus</h3>
-                    <p>Celebrado de 1º a 3 de maio, com cortejos tradicionais desde 1811.</p>
+                    <span class="tag tag-historia">Fevereiro</span>
+                    <h3>Gonçalo Folia</h3>
+                    <p>Tradicional Carnaval com cinco dias de folia e alegria nas ruas da cidade.</p>
                 </div>
             </div>
             <div class="card" style="border-bottom-color: var(--verde-natureza);">
                 <div class="card-body">
-                    <span class="tag tag-rural">Abril</span>
+                    <span class="tag tag-natureza">Abril</span>
                     <h3>38ª Cavalgada</h3>
-                    <p>Ocorrida no Parque de Exposições com shows e cultura rural.</p>
+                    <p>Concursos de marcha e grandes shows no Parque de Exposições Edirlei Márcio Moreira Lacerda.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--ouro);">
+                <div class="card-body">
+                    <span class="tag tag-religioso">Maio</span>
+                    <h3>Jubileu do Senhor Bom Jesus</h3>
+                    <p>De 1º a 3 de Maio. Fé e tradição que remonta a 1811 com cortejos e imagens sacras.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--azul-gov);">
+                <div class="card-body">
+                    <span class="tag tag-historia">Julho</span>
+                    <h3>Festival de Inverno</h3>
+                    <p>Cultura e gastronomia mineira na segunda quinzena de julho.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--ouro);">
+                <div class="card-body">
+                    <span class="tag tag-religioso">Setembro</span>
+                    <h3>N. Sra. da Guia e São Jorge</h3>
+                    <p>Tradições do Congado e Guardas de Marujos na comunidade do Bexiga.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ABA ATRAÇÕES -->
+    <!-- ABA ATRAÇÕES (Novo Conteúdo Expandido) -->
     <div id="atracoes" class="section">
-        <h2>Pontos Turísticos</h2>
-        <div class="grid-atracoes">
+        <p>Descubra o patrimônio que conta nossa história e as belezas naturais que nos cercam.</p>
+        
+        <h3>Históricas e Culturais</h3>
+        <div class="grid-cards">
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img">
-                <div class="card-body"><h3>Igreja Matriz</h3><p>Construção histórica no centro da cidade.</p></div>
+                <div class="card-body">
+                    <span class="tag tag-historia">Fé & Barroco</span>
+                    <h4>Igreja Matriz de São Gonçalo</h4>
+                    <p>O coração da cidade e principal símbolo religioso e histórico.</p>
+                </div>
             </div>
             <div class="card">
-                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/padre%20joao.png" class="card-img">
-                <div class="card-body"><h3>Estátua Padre João</h3><p>Monumento em homenagem ao ícone religioso local.</p></div>
+                <div class="card-body">
+                    <span class="tag tag-historia">Arquitetura</span>
+                    <h4>Igreja de Nossa Senhora do Rosário</h4>
+                    <p>Estilo rococó na Praça 1º de Março, um marco da arquitetura sacra.</p>
+                </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <span class="tag tag-historia">Memória</span>
+                    <h4>Centro Cultural</h4>
+                    <p>Espaço de valorização dos artistas locais e exposições históricas.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span class="tag tag-historia">Arqueologia</span>
+                    <h4>Lapa do Alberto</h4>
+                    <p>Pinturas rupestres milenares que revelam as origens da região.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Naturais e de Lazer</h3>
+        <div class="grid-cards">
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/usina_do_peti_sao_goncalo_do_rio_abaixo.jpeg" class="card-img">
-                <div class="card-body"><h3>Estação do Peti</h3><p>Área de proteção ambiental e águas claras.</p></div>
+                <div class="card-body">
+                    <span class="tag tag-natureza">Biodiversidade</span>
+                    <h4>Estação Ambiental de Peti</h4>
+                    <p>Santuário ecológico com trilhas e educação ambiental pela Cemig.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span class="tag tag-natureza">Aventura</span>
+                    <h4>Mirante da Cruzinha</h4>
+                    <p>Vista panorâmica incrível do Médio Piracicaba e o melhor pôr do sol.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span class="tag tag-natureza">Refresco</span>
+                    <h4>Cachoeira da Usina</h4>
+                    <p>Cenário de paz e águas refrescantes em meio à vegetação.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span class="tag tag-natureza">Lazer</span>
+                    <h4>Prainhas do Rio</h4>
+                    <p>Áreas de areia clara e águas calmas ideais para dias de calor.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ABA HISTÓRIA (Texto Completo) -->
+    <!-- ABA HISTÓRIA (Texto Íntegro) -->
     <div id="historia" class="section">
         <h2>Nossa História</h2>
         <div class="historia-texto">
@@ -190,6 +274,7 @@
     var map = L.map('map').setView([-19.8258, -43.3586], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
     L.marker([-19.8258, -43.3586]).addTo(map).bindPopup('Centro Histórico');
+    L.marker([-19.8510, -43.3400]).addTo(map).bindPopup('Estação de Peti');
 
     function showSection(id) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
