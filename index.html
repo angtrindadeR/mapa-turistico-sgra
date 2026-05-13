@@ -22,14 +22,13 @@
             font-family: 'Poppins', sans-serif; 
             margin: 0; 
             color: #333;
-            /* IMAGEM DE FUNDO DA CIDADE */
             background: url('https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/sao_goncalo_do_rio_abaixo.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
         header {
             background: white;
-            padding: 15px 5%;
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,14 +38,12 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .logo-box { display: flex; align-items: center; gap: 12px; }
-        /* Espaço para sua logo image_1fd5eb.png */
-        .logo-circle { width: 45px; height: 45px; background: var(--azul-gov); border-radius: 50%; }
+        .logo-box { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; width: auto; }
         
-        nav a { text-decoration: none; color: #444; font-weight: 600; margin-left: 20px; transition: 0.3s; }
+        nav a { text-decoration: none; color: #444; font-weight: 600; margin-left: 20px; transition: 0.3s; font-size: 0.9rem; }
         nav a:hover { color: var(--azul-gov); }
 
-        /* Container que centraliza e dá legibilidade ao conteúdo */
         .main-content {
             background: var(--branco-claro);
             width: 90%;
@@ -57,10 +54,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        section { padding: 40px 0; border-bottom: 1px solid #eee; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--azul-gov); margin-bottom: 30px; }
+        section { padding: 50px 0; border-bottom: 1px solid #eee; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--azul-gov); margin-bottom: 30px; }
 
-        /* Grid de Atrações */
         .grid-atracoes {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -73,16 +69,18 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: 0.3s;
-            border: 1px solid #eee;
+            border-bottom: 4px solid transparent;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .card:hover { transform: translateY(-5px); }
         .card-img { width: 100%; height: 200px; object-fit: cover; }
         .card-body { padding: 20px; }
-        .card-body h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
+        
+        .tag { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        .tag-religioso { background: #fff3e0; color: var(--ouro); }
+        .tag-festa { background: #e3f2fd; color: var(--azul-gov); }
+        .tag-rural { background: #e8f5e9; color: var(--verde-natureza); }
 
-        /* História */
-        .historia-texto { line-height: 1.8; text-align: justify; columns: 1; }
-        .historia-texto h3 { color: var(--ouro); margin-top: 25px; }
+        .historia-texto { line-height: 1.8; text-align: justify; }
 
         #map { height: 450px; width: 100%; border-radius: 15px; margin-top: 20px; border: 2px solid white; }
 
@@ -99,100 +97,102 @@
 
 <header>
     <div class="logo-box">
-        <div class="logo-circle"></div> 
-        <div style="line-height: 1.2;">
-            <span style="font-weight: 800; color: var(--azul-gov);">TURISMO</span><br>
-            <span style="font-size: 0.8rem; letter-spacing: 1px;">S.G. DO RIO ABAIXO</span>
+        <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/logo_saogoncalomg.png" alt="Logo São Gonçalo" class="logo-img">
+        <div style="line-height: 1.1;">
+            <span style="font-weight: 800; color: var(--azul-gov); font-size: 1.2rem;">TURISMO</span><br>
+            <span style="font-size: 0.75rem; letter-spacing: 1px; color: #666;">S.G. DO RIO ABAIXO</span>
         </div>
     </div>
     <nav>
         <a href="#atracoes">Atrações</a>
+        <a href="#agenda">Agenda Cultural</a>
         <a href="#historia">História</a>
         <a href="#mapa">Mapa</a>
-        <a href="#agenda">Agenda</a>
     </nav>
 </header>
 
 <div class="main-content">
     
-    <!-- SEÇÃO ATRAÇÕES -->
+    <!-- ATRAÇÕES -->
     <section id="atracoes">
-        <h2>Principais Atrações</h2>
+        <h2>O que Visitar</h2>
         <div class="grid-atracoes">
-            <!-- Igreja Matriz -->
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img" alt="Igreja Matriz">
-                <div class="card-body">
-                    <h3>Igreja Matriz de São Gonçalo</h3>
-                    <p>O maior símbolo da fé e arquitetura barroca da nossa região.</p>
-                </div>
+                <div class="card-body"><h3>Igreja Matriz</h3><p>Arquitetura barroca e fé no coração mineiro.</p></div>
             </div>
-            <!-- Caminho Padre João -->
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/padre%20joao.png" class="card-img" alt="Caminho Padre João">
-                <div class="card-body">
-                    <h3>Caminho do Padre João</h3>
-                    <p>Um roteiro de espiritualidade e belas paisagens mineiras.</p>
-                </div>
+                <div class="card-body"><h3>Caminho do Padre João</h3><p>Roteiro de contemplação e belas paisagens.</p></div>
             </div>
-            <!-- Usina do Peti -->
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/usina_do_peti_sao_goncalo_do_rio_abaixo.jpeg" class="card-img" alt="Usina do Peti">
+                <div class="card-body"><h3>Estação de Peti</h3><p>Ecoturismo e história ambiental preservada.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGENDA CULTURAL -->
+    <section id="agenda">
+        <h2>Agenda Cultural 2026</h2>
+        <div class="grid-atracoes">
+            <div class="card" style="border-bottom-color: var(--azul-gov);">
                 <div class="card-body">
-                    <h3>Estação Ambiental de Peti</h3>
-                    <p>Preservação ambiental, história da energia e muito verde.</p>
+                    <span class="tag tag-festa">Fevereiro</span>
+                    <h3>Gonçalo Folia</h3>
+                    <p>Tradicional festa de Carnaval com cinco dias de folia na cidade.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--verde-natureza);">
+                <div class="card-body">
+                    <span class="tag tag-rural">Abril</span>
+                    <h3>Cavalgada</h3>
+                    <p>38ª edição em abril no Parque de Exposições com shows e cultura rural.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--ouro);">
+                <div class="card-body">
+                    <span class="tag tag-religioso">Maio</span>
+                    <h3>Jubileu Bom Jesus</h3>
+                    <p>Tradição desde 1811 com cortejos e imagens sacras (1º a 3 de Maio).</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--ouro);">
+                <div class="card-body">
+                    <span class="tag tag-religioso">Setembro</span>
+                    <h3>Nossa Senhora da Guia</h3>
+                    <p>Celebração na comunidade do Bexiga com Guardas de Marujos e Congado.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO HISTÓRIA -->
+    <!-- HISTÓRIA -->
     <section id="historia">
-        <h2>Nossa História</h2>
+        <h2>História Viva</h2>
         <div class="historia-texto">
-            <h3>As Origens: O Ciclo do Ouro</h3>
-            <p>A história da cidade começa no início do século XVIII, por volta de 1704. Durante o auge da febre do ouro em Minas Gerais, o desbravador Bento Nunes de Figueiredo descobriu ricas jazidas de ouro de aluvião nas margens de um rio.</p>
-            <p>Fiel ao costume da época, ele ergueu uma pequena capela em homenagem a São Gonçalo de Amarante, santo português de sua devoção. Em torno dessa capela, o primeiro núcleo de povoamento começou a crescer.</p>
-            
-            <h3>O Cenário Atual: O Ciclo do Ferro</h3>
-            <p>Se o ouro deu origem à cidade, hoje é a extração de minério de ferro que movimenta sua economia. São Gonçalo do Rio Abaixo transformou-se em um importante polo minerador, unindo infraestrutura moderna ao charme do interior.</p>
+            <p><strong>As Origens:</strong> Iniciada em 1704 por Bento Nunes de Figueiredo, a cidade cresceu em torno da capela dedicada a São Gonçalo de Amarante.</p>
+            <p><strong>Autonomia:</strong> A emancipação política oficial ocorreu em 30 de dezembro de 1962, consolidando sua identidade.</p>
         </div>
     </section>
 
-    <!-- SEÇÃO MAPA -->
+    <!-- MAPA -->
     <section id="mapa">
-        <h2>Guia Interativo</h2>
-        <p>Explore os pontos turísticos diretamente no mapa da cidade.</p>
+        <h2>Explore o Mapa</h2>
         <div id="map"></div>
     </section>
 
-    <!-- SEÇÃO AGENDA -->
-    <section id="agenda">
-        <h2>Agenda Cultural</h2>
-        <p>Fique por dentro das festas tradicionais e eventos locais.</p>
-        <div style="padding: 20px; background: #f9f9f9; border-radius: 10px; border-left: 4px solid var(--ouro);">
-            <strong>Próximo Evento:</strong> Festa de São Gonçalo (Data a confirmar)
-        </div>
-    </section>
-
 </div>
 
-<div class="chatbot-btn" onclick="alert('Chatbot: Olá! Como posso te ajudar com roteiros em São Gonçalo?')">
+<div class="chatbot-btn" onclick="alert('Deseja saber mais sobre a Cavalgada ou o Jubileu?')">
     <span>💬</span>
 </div>
-
-<footer style="text-align: center; padding: 30px; color: white; font-size: 0.9rem;">
-    © 2024 Turismo São Gonçalo do Rio Abaixo - Projeto de Divulgação Cultural
-</footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     var map = L.map('map').setView([-19.8258, -43.3586], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-    
-    // Marcadores
-    L.marker([-19.8258, -43.3586]).addTo(map).bindPopup('Igreja Matriz');
-    L.marker([-19.8510, -43.3400]).addTo(map).bindPopup('Estação de Peti');
+    L.marker([-19.8258, -43.3586]).addTo(map).bindPopup('Centro Histórico');
 </script>
 
 </body>
