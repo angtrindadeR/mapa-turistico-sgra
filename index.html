@@ -16,7 +16,7 @@
             --branco-claro: rgba(255, 255, 255, 0.95);
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
 
         body { 
             font-family: 'Poppins', sans-serif; 
@@ -41,8 +41,12 @@
         .logo-box { display: flex; align-items: center; gap: 15px; }
         .logo-img { height: 60px; width: auto; }
         
-        nav a { text-decoration: none; color: #444; font-weight: 600; margin-left: 20px; transition: 0.3s; font-size: 0.9rem; }
-        nav a:hover { color: var(--azul-gov); }
+        nav button { 
+            background: none; border: none; font-family: 'Poppins';
+            color: #444; font-weight: 600; margin-left: 20px; 
+            cursor: pointer; transition: 0.3s; font-size: 0.9rem; 
+        }
+        nav button:hover { color: var(--azul-gov); }
 
         .main-content {
             background: var(--branco-claro);
@@ -52,14 +56,17 @@
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 70vh;
         }
 
-        section { padding: 50px 0; border-bottom: 1px solid #eee; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--azul-gov); margin-bottom: 30px; }
+        .section { display: none; }
+        .section.active { display: block; }
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--azul-gov); margin-bottom: 20px; }
 
         .grid-atracoes {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -68,21 +75,18 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: 0.3s;
             border-bottom: 4px solid transparent;
         }
-        .card:hover { transform: translateY(-5px); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-body { padding: 15px; }
         
-        .tag { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        .tag { font-size: 0.7rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
         .tag-religioso { background: #fff3e0; color: var(--ouro); }
-        .tag-festa { background: #e3f2fd; color: var(--azul-gov); }
         .tag-rural { background: #e8f5e9; color: var(--verde-natureza); }
 
-        .historia-texto { line-height: 1.8; text-align: justify; }
+        .historia-texto { line-height: 1.8; text-align: justify; white-space: pre-line; }
 
-        #map { height: 450px; width: 100%; border-radius: 15px; margin-top: 20px; border: 2px solid white; }
+        #map { height: 400px; width: 100%; border-radius: 15px; margin-top: 20px; border: 2px solid white; }
 
         .chatbot-btn {
             position: fixed; bottom: 30px; right: 30px;
@@ -104,83 +108,76 @@
         </div>
     </div>
     <nav>
-        <a href="#atracoes">Atrações</a>
-        <a href="#agenda">Agenda Cultural</a>
-        <a href="#historia">História</a>
-        <a href="#mapa">Mapa</a>
+        <button onclick="showSection('home')">Início</button>
+        <button onclick="showSection('atracoes')">Atrações</button>
+        <button onclick="showSection('historia')">História</button>
     </nav>
 </header>
 
 <div class="main-content">
     
-    <!-- ATRAÇÕES -->
-    <section id="atracoes">
-        <h2>O que Visitar</h2>
+    <!-- ABA INÍCIO (Mapa e Agenda) -->
+    <div id="home" class="section active">
+        <h2>Mapa Turístico</h2>
+        <div id="map"></div>
+        
+        <h2 style="margin-top: 50px;">Agenda Cultural 2026</h2>
         <div class="grid-atracoes">
-            <div class="card">
-                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img" alt="Igreja Matriz">
-                <div class="card-body"><h3>Igreja Matriz</h3><p>Arquitetura barroca e fé no coração mineiro.</p></div>
-            </div>
-            <div class="card">
-                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/padre%20joao.png" class="card-img" alt="Caminho Padre João">
-                <div class="card-body"><h3>Caminho do Padre João</h3><p>Roteiro de contemplação e belas paisagens.</p></div>
-            </div>
-            <div class="card">
-                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/usina_do_peti_sao_goncalo_do_rio_abaixo.jpeg" class="card-img" alt="Usina do Peti">
-                <div class="card-body"><h3>Estação de Peti</h3><p>Ecoturismo e história ambiental preservada.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AGENDA CULTURAL -->
-    <section id="agenda">
-        <h2>Agenda Cultural 2026</h2>
-        <div class="grid-atracoes">
-            <div class="card" style="border-bottom-color: var(--azul-gov);">
+            <div class="card" style="border-bottom-color: var(--ouro);">
                 <div class="card-body">
-                    <span class="tag tag-festa">Fevereiro</span>
-                    <h3>Gonçalo Folia</h3>
-                    <p>Tradicional festa de Carnaval com cinco dias de folia na cidade.</p>
+                    <span class="tag tag-religioso">Maio</span>
+                    <h3>Jubileu do Senhor Bom Jesus</h3>
+                    <p>Celebrado de 1º a 3 de maio, com cortejos tradicionais desde 1811.</p>
                 </div>
             </div>
             <div class="card" style="border-bottom-color: var(--verde-natureza);">
                 <div class="card-body">
                     <span class="tag tag-rural">Abril</span>
-                    <h3>Cavalgada</h3>
-                    <p>38ª edição em abril no Parque de Exposições com shows e cultura rural.</p>
-                </div>
-            </div>
-            <div class="card" style="border-bottom-color: var(--ouro);">
-                <div class="card-body">
-                    <span class="tag tag-religioso">Maio</span>
-                    <h3>Jubileu Bom Jesus</h3>
-                    <p>Tradição desde 1811 com cortejos e imagens sacras (1º a 3 de Maio).</p>
-                </div>
-            </div>
-            <div class="card" style="border-bottom-color: var(--ouro);">
-                <div class="card-body">
-                    <span class="tag tag-religioso">Setembro</span>
-                    <h3>Nossa Senhora da Guia</h3>
-                    <p>Celebração na comunidade do Bexiga com Guardas de Marujos e Congado.</p>
+                    <h3>38ª Cavalgada</h3>
+                    <p>Ocorrida no Parque de Exposições com shows e cultura rural.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- HISTÓRIA -->
-    <section id="historia">
-        <h2>História Viva</h2>
+    <!-- ABA ATRAÇÕES -->
+    <div id="atracoes" class="section">
+        <h2>Pontos Turísticos</h2>
+        <div class="grid-atracoes">
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img">
+                <div class="card-body"><h3>Igreja Matriz</h3><p>Construção histórica no centro da cidade.</p></div>
+            </div>
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/padre%20joao.png" class="card-img">
+                <div class="card-body"><h3>Estátua Padre João</h3><p>Monumento em homenagem ao ícone religioso local.</p></div>
+            </div>
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/usina_do_peti_sao_goncalo_do_rio_abaixo.jpeg" class="card-img">
+                <div class="card-body"><h3>Estação do Peti</h3><p>Área de proteção ambiental e águas claras.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABA HISTÓRIA (Texto Completo) -->
+    <div id="historia" class="section">
+        <h2>Nossa História</h2>
         <div class="historia-texto">
-            <p><strong>As Origens:</strong> Iniciada em 1704 por Bento Nunes de Figueiredo, a cidade cresceu em torno da capela dedicada a São Gonçalo de Amarante.</p>
-            <p><strong>Autonomia:</strong> A emancipação política oficial ocorreu em 30 de dezembro de 1962, consolidando sua identidade.</p>
-        </div>
-    </section>
+            <strong>As Origens: O Ciclo do Ouro</strong>
+            A história da cidade começa no início do século XVIII, por volta de 1704. Durante o auge da febre do ouro em Minas Gerais, o desbravador Bento Nunes de Figueiredo chegou à região e descobriu ricas jazidas de ouro de aluvião nas margens de um rio.
+            Fiel ao costume da época, ele ergueu uma pequena capela em homenagem a São Gonçalo de Amarante, santo português de sua devoção. Em torno dessa capela, o primeiro núcleo de povoamento começou a crescer, ganhando o nome de "São Gonçalo do Rio Abaixo" justamente pela localização geográfica em relação ao curso das águas.
 
-    <!-- MAPA -->
-    <section id="mapa">
-        <h2>Explore o Mapa</h2>
-        <div id="map"></div>
-    </section>
+            <strong>Desenvolvimento e Fé</strong>
+            Diferente de outros centros auríferos que entraram em colapso total após o fim do metal precioso, a vila sobreviveu graças à agropecuária. As terras férteis permitiram que a região se tornasse um ponto de apoio e abastecimento para os viajantes que circulavam pela Estrada Real.
+            A arquitetura religiosa sempre foi o pilar da comunidade. A atual Igreja Matriz de São Gonçalo, com suas linhas coloniais, permanece como o maior símbolo de resistência e identidade do povo são-gonçalense.
+
+            <strong>A Emancipação</strong>
+            Por muito tempo, o povoado esteve ligado administrativamente a Santa Bárbara. No entanto, o crescimento da identidade local e da economia levou à busca pela autonomia. A emancipação política oficial aconteceu em 30 de dezembro de 1962, marcando o início de uma nova era para o município.
+
+            <strong>O Cenário Atual: O Ciclo do Ferro</strong>
+            Se o ouro deu origem à cidade, hoje é a extração de minério de ferro que movimenta sua economia. São Gonçalo do Rio Abaixo transformou-se em um importante polo minerador, o que trouxe um rápido desenvolvimento urbano e infraestrutura moderna, sem que a cidade perdesse seu charme de interior e suas tradições culturais, como as festas religiosas e os grupos de congado.
+        </div>
+    </div>
 
 </div>
 
@@ -193,6 +190,13 @@
     var map = L.map('map').setView([-19.8258, -43.3586], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
     L.marker([-19.8258, -43.3586]).addTo(map).bindPopup('Centro Histórico');
+
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        if(id === 'home') { setTimeout(() => { map.invalidateSize(); }, 300); }
+        window.scrollTo(0,0);
+    }
 </script>
 
 </body>
