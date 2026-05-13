@@ -4,187 +4,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turismo | São Gonçalo do Rio Abaixo</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --azul: #0077be;
-            --verde: #2d8a42;
-            --ouro: #d4af37;
-            --branco-transparente: rgba(255, 255, 255, 0.9);
+            --azul-gov: #0056b3;
+            --verde-natureza: #2d8a42;
+            --ouro: #b8860b;
+            --branco-claro: rgba(255, 255, 255, 0.95);
         }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Poppins', sans-serif; 
             margin: 0; 
-            /* Background fixo similar ao de Ouro Preto */
-            background: url('https://images.unsplash.com/photo-1590732823068-f9a3ad8dcd82?auto=format&fit=crop&q=80&w=1920') no-repeat center center fixed; 
-            background-size: cover;
             color: #333;
+            /* IMAGEM DE FUNDO DA CIDADE */
+            background: url('https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/sao_goncalo_do_rio_abaixo.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        /* Header com Logo e Menu Centralizado */
         header {
             background: white;
-            padding: 10px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 50px; } /* Aqui entrará a image_1fd5eb.png */
-        .logo-text { font-weight: bold; color: var(--azul); font-size: 1.1rem; line-height: 1.1; }
+        .logo-box { display: flex; align-items: center; gap: 12px; }
+        /* Espaço para sua logo image_1fd5eb.png */
+        .logo-circle { width: 45px; height: 45px; background: var(--azul-gov); border-radius: 50%; }
+        
+        nav a { text-decoration: none; color: #444; font-weight: 600; margin-left: 20px; transition: 0.3s; }
+        nav a:hover { color: var(--azul-gov); }
 
-        nav { display: flex; gap: 15px; }
-        nav button {
-            background: none; border: none; font-weight: 600; color: #444;
-            cursor: pointer; padding: 10px; transition: 0.3s;
-        }
-        nav button:hover { color: var(--azul); border-bottom: 2px solid var(--azul); }
-
-        /* Conteúdo Principal com Fundo Opaco para Leitura */
-        .main-container {
-            background: var(--branco-transparente);
-            margin: 20px auto;
+        /* Container que centraliza e dá legibilidade ao conteúdo */
+        .main-content {
+            background: var(--branco-claro);
             width: 90%;
-            max-width: 1200px;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 1100px;
+            margin: 40px auto;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        h2.titulo-sessao { border-left: 5px solid var(--azul); padding-left: 15px; margin-bottom: 25px; }
+        section { padding: 40px 0; border-bottom: 1px solid #eee; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--azul-gov); margin-bottom: 30px; }
 
-        /* Carrossel de Cards */
-        .carousel { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: thin; }
-        .card { 
-            min-width: 250px; background: white; border-radius: 10px; 
-            overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-        }
-        .card img { width: 100%; height: 150px; object-fit: cover; background: #eee; }
-        .card-content { padding: 15px; }
-        .card-content h4 { margin: 0 0 10px 0; color: var(--azul); }
-
-        /* Grid de Atrações (Estilo image_1f60d8.jpg) */
+        /* Grid de Atrações */
         .grid-atracoes {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        #map { height: 400px; width: 100%; border-radius: 15px; margin-top: 20px; }
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-body h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
 
-        .section { display: none; }
-        .active { display: block; }
+        /* História */
+        .historia-texto { line-height: 1.8; text-align: justify; columns: 1; }
+        .historia-texto h3 { color: var(--ouro); margin-top: 25px; }
 
-        .historia-texto { line-height: 1.8; text-align: justify; }
-        
-        .estrada-real-logo { width: 120px; margin-top: 20px; opacity: 0.8; }
+        #map { height: 450px; width: 100%; border-radius: 15px; margin-top: 20px; border: 2px solid white; }
+
+        .chatbot-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--azul-gov); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 2000;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-area">
-        <!-- Substituir src pela sua logo depois -->
-        <div style="width:40px; height:40px; background:var(--azul); border-radius:50%"></div> 
-        <div class="logo-text">Turismo<br>S.G. Rio Abaixo</div>
+    <div class="logo-box">
+        <div class="logo-circle"></div> 
+        <div style="line-height: 1.2;">
+            <span style="font-weight: 800; color: var(--azul-gov);">TURISMO</span><br>
+            <span style="font-size: 0.8rem; letter-spacing: 1px;">S.G. DO RIO ABAIXO</span>
+        </div>
     </div>
     <nav>
-        <button onclick="showSection('home')">Início</button>
-        <button onclick="showSection('atracoes')">Atrações</button>
-        <button onclick="showSection('historia')">História</button>
-        <button onclick="showSection('agenda')">Agenda Cultural</button>
+        <a href="#atracoes">Atrações</a>
+        <a href="#historia">História</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#agenda">Agenda</a>
     </nav>
 </header>
 
-<div class="main-container">
+<div class="main-content">
     
-    <!-- ABA INÍCIO -->
-    <div id="home" class="section active">
-        <h2 class="titulo-sessao">Principais Atrações</h2>
-        <div class="carousel">
-            <!-- Card 1 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/250x150?text=Matriz" alt="Matriz">
-                <div class="card-content"><h4>Matriz de Santa Bárbara</h4><p>O coração barroco da cidade.</p></div>
-            </div>
-            <!-- Card 2 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/250x150?text=Peti" alt="Peti">
-                <div class="card-content"><h4>Estação de Peti</h4><p>Natureza e biodiversidade preservada.</p></div>
-            </div>
-            <!-- Card 3 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/250x150?text=Caminho+Padre+Joao" alt="Padre Joao">
-                <div class="card-content"><h4>Caminho do Padre João</h4><p>Turismo religioso e contemplação.</p></div>
-            </div>
-            <!-- Card 4 -->
-            <div class="card">
-                <img src="https://via.placeholder.com/250x150?text=Centro+Cultural" alt="Cultura">
-                <div class="card-content"><h4>Centro Cultural</h4><p>Exposições e história local.</p></div>
-            </div>
-        </div>
-
-        <h2 class="titulo-sessao">Localize-se</h2>
-        <div id="map"></div>
-        <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Logotipo_da_Estrada_Real.png/300px-Logotipo_da_Estrada_Real.png" class="estrada-real-logo" alt="Estrada Real">
-    </div>
-
-    <!-- ABA ATRAÇÕES (Baseada na image_1f60d8.jpg) -->
-    <div id="atracoes" class="section">
-        <h2 class="titulo-sessao">O que fazer em São Gonçalo</h2>
+    <!-- SEÇÃO ATRAÇÕES -->
+    <section id="atracoes">
+        <h2>Principais Atrações</h2>
         <div class="grid-atracoes">
-            <div class="card"><img src="https://via.placeholder.com/250x150" alt="Artesao"><div class="card-content"><h4>Casa do Artesão</h4></div></div>
-            <div class="card"><img src="https://via.placeholder.com/250x150" alt="Cruzeiro"><div class="card-content"><h4>Cruzeiro da Matriz</h4></div></div>
-            <div class="card"><img src="https://via.placeholder.com/250x150" alt="Rosario"><div class="card-content"><h4>Igreja do Rosário</h4></div></div>
-            <div class="card"><img src="https://via.placeholder.com/250x150" alt="Efigenia"><div class="card-content"><h4>Igreja Santa Efigênia</h4></div></div>
+            <!-- Igreja Matriz -->
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img" alt="Igreja Matriz">
+                <div class="card-body">
+                    <h3>Igreja Matriz de São Gonçalo</h3>
+                    <p>O maior símbolo da fé e arquitetura barroca da nossa região.</p>
+                </div>
+            </div>
+            <!-- Caminho Padre João -->
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/padre%20joao.png" class="card-img" alt="Caminho Padre João">
+                <div class="card-body">
+                    <h3>Caminho do Padre João</h3>
+                    <p>Um roteiro de espiritualidade e belas paisagens mineiras.</p>
+                </div>
+            </div>
+            <!-- Usina do Peti -->
+            <div class="card">
+                <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/usina_do_peti_sao_goncalo_do_rio_abaixo.jpeg" class="card-img" alt="Usina do Peti">
+                <div class="card-body">
+                    <h3>Estação Ambiental de Peti</h3>
+                    <p>Preservação ambiental, história da energia e muito verde.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ABA HISTÓRIA -->
-    <div id="historia" class="section">
-        <h2 class="titulo-sessao">Nossa História</h2>
+    <!-- SEÇÃO HISTÓRIA -->
+    <section id="historia">
+        <h2>Nossa História</h2>
         <div class="historia-texto">
             <h3>As Origens: O Ciclo do Ouro</h3>
-            <p>A história da cidade começa no início do século XVIII, por volta de 1704. Durante o auge da febre do ouro em Minas Gerais, o desbravador Bento Nunes de Figueiredo chegou à região e descobriu ricas jazidas de ouro de aluvião nas margens de um rio.</p>
-            <p>Fiel ao costume da época, ele ergueu uma pequena capela em homenagem a São Gonçalo de Amarante, santo português de sua devoção. Em torno dessa capela, o primeiro núcleo de povoamento começou a crescer, ganhando o nome de "São Gonçalo do Rio Abaixo" justamente pela localização geográfica em relação ao curso das águas.</p>
-            
-            <h3>Desenvolvimento e Fé</h3>
-            <p>Diferente de outros centros auríferos que entraram em colapso total após o fim do metal precioso, a vila sobreviveu graças à agropecuária. As terras férteis permitiram que a região se tornasse um ponto de apoio e abastecimento para os viajantes que circulavam pela Estrada Real.</p>
-            
-            <h3>A Emancipação</h3>
-            <p>A emancipação política oficial aconteceu em 30 de dezembro de 1962, marcando o início de uma nova era para o município.</p>
+            <p>A história da cidade começa no início do século XVIII, por volta de 1704. Durante o auge da febre do ouro em Minas Gerais, o desbravador Bento Nunes de Figueiredo descobriu ricas jazidas de ouro de aluvião nas margens de um rio.</p>
+            <p>Fiel ao costume da época, ele ergueu uma pequena capela em homenagem a São Gonçalo de Amarante, santo português de sua devoção. Em torno dessa capela, o primeiro núcleo de povoamento começou a crescer.</p>
             
             <h3>O Cenário Atual: O Ciclo do Ferro</h3>
-            <p>Se o ouro deu origem à cidade, hoje é a extração de minério de ferro que movimenta sua economia. São Gonçalo do Rio Abaixo transformou-se em um importante polo minerador.</p>
+            <p>Se o ouro deu origem à cidade, hoje é a extração de minério de ferro que movimenta sua economia. São Gonçalo do Rio Abaixo transformou-se em um importante polo minerador, unindo infraestrutura moderna ao charme do interior.</p>
         </div>
-    </div>
+    </section>
 
-    <!-- ABA AGENDA -->
-    <div id="agenda" class="section">
-        <h2 class="titulo-sessao">Agenda Cultural</h2>
-        <p>Em breve, a lista completa de eventos e festas tradicionais.</p>
-    </div>
+    <!-- SEÇÃO MAPA -->
+    <section id="mapa">
+        <h2>Guia Interativo</h2>
+        <p>Explore os pontos turísticos diretamente no mapa da cidade.</p>
+        <div id="map"></div>
+    </section>
+
+    <!-- SEÇÃO AGENDA -->
+    <section id="agenda">
+        <h2>Agenda Cultural</h2>
+        <p>Fique por dentro das festas tradicionais e eventos locais.</p>
+        <div style="padding: 20px; background: #f9f9f9; border-radius: 10px; border-left: 4px solid var(--ouro);">
+            <strong>Próximo Evento:</strong> Festa de São Gonçalo (Data a confirmar)
+        </div>
+    </section>
 
 </div>
+
+<div class="chatbot-btn" onclick="alert('Chatbot: Olá! Como posso te ajudar com roteiros em São Gonçalo?')">
+    <span>💬</span>
+</div>
+
+<footer style="text-align: center; padding: 30px; color: white; font-size: 0.9rem;">
+    © 2024 Turismo São Gonçalo do Rio Abaixo - Projeto de Divulgação Cultural
+</footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     var map = L.map('map').setView([-19.8258, -43.3586], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-    L.marker([-19.8258, -43.3586]).addTo(map).bindPopup('Centro Histórico');
-
-    function showSection(id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        if(id === 'home') { setTimeout(() => { map.invalidateSize(); }, 300); }
-        window.scrollTo(0,0);
-    }
+    
+    // Marcadores
+    L.marker([-19.8258, -43.3586]).addTo(map).bindPopup('Igreja Matriz');
+    L.marker([-19.8510, -43.3400]).addTo(map).bindPopup('Estação de Peti');
 </script>
 
 </body>
