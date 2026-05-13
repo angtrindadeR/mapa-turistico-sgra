@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo São Gonçalo do Rio Abaixo</title>
+    
+    <!-- CSS para o Mapa (Leaflet) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        nav { background: #2c3e50; color: white; padding: 15px; display: flex; gap: 10px; overflow-x: auto; }
+        nav button { background: #34495e; border: none; color: white; padding: 10px; cursor: pointer; border-radius: 5px; }
+        nav button:hover { background: #1abc9c; }
+        .section { display: none; padding: 20px; }
+        .active { display: block; }
+        #map { height: 400px; width: 100%; border-bottom: 2px solid #2c3e50; }
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 10px; background: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <button onclick="showSection('home')">Início (Mapa)</button>
+    <button onclick="showSection('pontos')">Pontos Turísticos</button>
+    <button onclick="showSection('roteiro')">Roteiro Interativo</button>
+    <button onclick="showSection('agenda')">Agenda Cultural</button>
+    <button onclick="showSection('historia')">História</button>
+</nav>
+
+<!-- Aba Home com Mapa -->
+<div id="home" class="section active">
+    <h2>Mapa da Cidade</h2>
+    <div id="map"></div>
+</div>
+
+<!-- Aba Pontos Turísticos -->
+<div id="pontos" class="section">
+    <h2>Pontos Turísticos</h2>
+    <div class="card"><h3>Igreja Matriz de Santa Bárbara</h3><p>Localizada no centro histórico.</p></div>
+    <div class="card"><h3>Estação Ambiental de Peti</h3><p>Reserva natural com trilhas e biodiversidade.</p></div>
+</div>
+
+<!-- Aba Roteiro -->
+<div id="roteiro" class="section">
+    <h2>Sugestão de Roteiro</h2>
+    <div class="card">
+        <strong>Manhã:</strong> Visita ao Peti. <br>
+        <em>Recomendação:</em> Leve água e use calçados confortáveis.
+    </div>
+</div>
+
+<!-- Aba Agenda -->
+<div id="agenda" class="section">
+    <h2>Agenda Cultural</h2>
+    <p>Confira as próximas festas e eventos da cidade aqui.</p>
+</div>
+
+<!-- Aba História -->
+<div id="historia" class="section">
+    <h2>História de São Gonçalo</h2>
+    <p>A cidade nasceu no século XVIII, fruto da exploração do ouro...</p>
+</div>
+
+<!-- Scripts do Mapa -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Configuração do Mapa
+    var map = L.map('map').setView([-19.8258, -43.3586], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    
+    // Adicionando um marcador (Pin)
+    L.marker([-19.8258, -43.3586]).addTo(map)
+        .bindPopup('São Gonçalo do Rio Abaixo')
+        .openPopup();
+
+    // Função para trocar de aba
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        if(id === 'home') { setTimeout(() => { map.invalidateSize(); }, 200); }
+    }
+</script>
+
+</body>
+</html>
