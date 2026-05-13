@@ -54,17 +54,17 @@
 
         .boas-vindas { font-size: 1.15rem; line-height: 1.8; text-align: center; font-style: italic; color: #222; margin-bottom: 40px; background: rgba(255,255,255,0.5); padding: 20px; border-radius: 15px; }
 
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
 
         .card {
             background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border-bottom: 4px solid transparent; transition: 0.3s; display: flex; flex-direction: column;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-        .card-img { width: 100%; height: 180px; object-fit: cover; }
-        .card-body { padding: 15px; flex-grow: 1; }
+        .card-img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; flex-grow: 1; }
         
-        .tag { font-size: 0.65rem; font-weight: bold; padding: 3px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px; text-transform: uppercase; }
+        .tag { font-size: 0.7rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
         .tag-historia { background: #e3f2fd; color: var(--azul-gov); }
         .tag-natureza { background: #e8f5e9; color: var(--verde-natureza); }
         .tag-religioso { background: #fff3e0; color: var(--ouro); }
@@ -73,7 +73,6 @@
         .historia-texto { line-height: 1.9; text-align: justify; white-space: pre-line; font-size: 1.1rem; color: #333; }
         #map { height: 500px; width: 100%; border-radius: 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 20px; }
 
-        /* CHATBOT */
         .chatbot-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
         .chatbot-btn {
             background: var(--azul-gov); color: white; width: 65px; height: 65px; border-radius: 50%;
@@ -124,7 +123,7 @@
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img">
                 <div class="card-body">
-                    <span class="tag tag-religioso">Patrimônio</span>
+                    <span class="tag tag-religioso">História</span>
                     <h4>Igreja Matriz</h4>
                     <p>O maior símbolo da fé e arquitetura colonial da cidade.</p>
                 </div>
@@ -132,9 +131,9 @@
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/mirante%20da%20cruzinha.jpg" class="card-img">
                 <div class="card-body">
-                    <span class="tag tag-natureza">Vista Única</span>
+                    <span class="tag tag-natureza">Panorâmica</span>
                     <h4>Mirante da Cruzinha</h4>
-                    <p>Panorama deslumbrante das montanhas mineiras.</p>
+                    <p>Vista incrível das montanhas do Médio Piracicaba.</p>
                 </div>
             </div>
             <div class="card">
@@ -142,15 +141,15 @@
                 <div class="card-body">
                     <span class="tag tag-natureza">Ecoturismo</span>
                     <h4>Estação de Peti</h4>
-                    <p>Biodiversidade preservada e trilhas naturais.</p>
+                    <p>Santuário de biodiversidade com trilhas ecológicas.</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body" style="background: #f8f9fa; display: flex; align-items: center; justify-content: center; text-align: center; height: 100%;">
                     <div>
-                        <span class="tag tag-historia">Cultura Viva</span>
+                        <span class="tag tag-historia">Cultura</span>
                         <h4>Congado</h4>
-                        <p>A força das Guardas de Marujos e Moçambique em nossas festas.</p>
+                        <p>A força das Guardas de Marujos e Moçambique em nossas tradições.</p>
                     </div>
                 </div>
             </div>
@@ -159,10 +158,43 @@
         <h2>Explore o Mapa</h2>
         <div id="map"></div>
         
-        <h2>Próximos Eventos</h2>
+        <h2>Agenda Cultural 2026</h2>
         <div class="grid-cards">
-            <div class="card" style="border-bottom-color: var(--verde-natureza);"><div class="card-body"><span class="tag tag-natureza">Abril</span><h3>38ª Cavalgada</h3><p>Shows e tradição no Parque de Exposições.</p></div></div>
-            <div class="card" style="border-bottom-color: var(--ouro);"><div class="card-body"><span class="tag tag-religioso">Maio</span><h3>Jubileu Bom Jesus</h3><p>Fé e devoção desde 1811.</p></div></div>
+            <div class="card" style="border-bottom-color: var(--azul-gov);">
+                <div class="card-body">
+                    <span class="tag tag-historia">Fevereiro</span>
+                    <h3>Gonçalo Folia</h3>
+                    <p>Tradicional Carnaval com cinco dias de folia e alegria nas ruas da cidade.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--verde-natureza);">
+                <div class="card-body">
+                    <span class="tag tag-natureza">Abril</span>
+                    <h3>38ª Cavalgada</h3>
+                    <p>Concursos de marcha e grandes shows no Parque de Exposições.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--ouro);">
+                <div class="card-body">
+                    <span class="tag tag-religioso">Maio</span>
+                    <h3>Jubileu Bom Jesus</h3>
+                    <p>Celebrado de 1º a 3 de maio. Tradição religiosa que remonta a 1811.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--azul-gov);">
+                <div class="card-body">
+                    <span class="tag tag-historia">Julho</span>
+                    <h3>Festival de Inverno</h3>
+                    <p>Evento cultural e gastronômico de destaque na região.</p>
+                </div>
+            </div>
+            <div class="card" style="border-bottom-color: var(--ouro);">
+                <div class="card-body">
+                    <span class="tag tag-religioso">Setembro</span>
+                    <h3>N. Sra. da Guia</h3>
+                    <p>Festa na comunidade do Bexiga com Guardas de Marujos e tradição.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -172,15 +204,15 @@
         <div class="grid-cards">
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/matriz%20de%20sgra.jpg" class="card-img">
-                <div class="card-body"><h4>Igreja Matriz</h4><p>Centro histórico e religioso.</p></div>
+                <div class="card-body"><h4>Igreja Matriz</h4><p>Centro histórico e principal símbolo de fé.</p></div>
             </div>
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/sao_goncalo_do_rio_abaixo%20rosario.jpg" class="card-img">
-                <div class="card-body"><h4>Igreja do Rosário</h4><p>Beleza rococó na praça principal.</p></div>
+                <div class="card-body"><h4>Igreja do Rosário</h4><p>Arquitetura sacra rococó preservada.</p></div>
             </div>
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/centro%20cultural.jpg" class="card-img">
-                <div class="card-body"><h4>Centro Cultural</h4><p>Memória e arte são-gonçalense.</p></div>
+                <div class="card-body"><h4>Centro Cultural</h4><p>Preservação da memória e artes locais.</p></div>
             </div>
         </div>
 
@@ -188,31 +220,31 @@
         <div class="grid-cards">
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/mirante%20da%20cruzinha.jpg" class="card-img">
-                <div class="card-body"><h4>Mirante da Cruzinha</h4><p>Vista panorâmica espetacular.</p></div>
+                <div class="card-body"><h4>Mirante da Cruzinha</h4><p>Ponto panorâmico para as montanhas.</p></div>
             </div>
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/prainha.jpg" class="card-img">
-                <div class="card-body"><h4>Prainha</h4><p>Refúgio e descanso às margens do rio.</p></div>
+                <div class="card-body"><h4>Prainha</h4><p>Águas calmas para lazer em família.</p></div>
             </div>
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/usina_do_peti_sao_goncalo_do_rio_abaixo.jpeg" class="card-img">
-                <div class="card-body"><h4>Estação de Peti</h4><p>Reserva ambiental de biodiversidade.</p></div>
+                <div class="card-body"><h4>Estação de Peti</h4><p>Santuário ecológico de biodiversidade.</p></div>
             </div>
         </div>
 
-        <h3>Onde Comer: Gastronomia</h3>
+        <h3>Gastronomia Local</h3>
         <div class="grid-cards">
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/sabores%20da%20lena.jpg" class="card-img">
-                <div class="card-body"><h4>Sabores da Lena</h4><p>Culinária mineira tradicional.</p></div>
+                <div class="card-body"><h4>Sabores da Lena</h4><p>O melhor tempero caseiro mineiro.</p></div>
             </div>
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/famoso%20pedaco.jpeg" class="card-img">
-                <div class="card-body"><h4>Famoso Pedaço</h4><p>Doceria e salgados artesanais.</p></div>
+                <div class="card-body"><h4>Famoso Pedaço</h4><p>Doceria artesanal famosa na região.</p></div>
             </div>
             <div class="card">
                 <img src="https://raw.githubusercontent.com/angtrindadeR/mapa-turistico-sgra/main/recanto%20da%20castata.jpg" class="card-img">
-                <div class="card-body"><h4>Recanto da Cascata</h4><p>Lazer e boa comida junto à natureza.</p></div>
+                <div class="card-body"><h4>Recanto da Cascata</h4><p>Gastronomia e lazer em meio à natureza.</p></div>
             </div>
         </div>
     </div>
@@ -238,14 +270,12 @@
     </div>
 </div>
 
-<!-- CHATBOT -->
 <div class="chatbot-container">
     <div class="chat-window" id="chatWindow">
-        <div class="chat-header">Dúvidas sobre o Turismo?</div>
+        <div class="chat-header">Dúvidas?</div>
         <div class="chat-body">
-            <button class="chat-question" onclick="alert('A 38ª Cavalgada ocorre em abril no Parque de Exposições!')">A próxima Cavalgada?</button>
-            <button class="chat-question" onclick="alert('O Jubileu do Senhor Bom Jesus é celebrado de 1º a 3 de maio!')">O Jubileu do Senhor Bom Jesus?</button>
-            <button class="chat-question" onclick="alert('As festas de N. Sra da Guia ocorrem em setembro no Bexiga com o Congado!')">As festas de N. Sra da Guia?</button>
+            <button class="chat-question" onclick="alert('Cavalgada: Abril!')">A próxima Cavalgada?</button>
+            <button class="chat-question" onclick="alert('Jubileu: 1 a 3 de Maio!')">Jubileu Bom Jesus?</button>
         </div>
     </div>
     <div class="chatbot-btn" onclick="toggleChat()">💬</div>
